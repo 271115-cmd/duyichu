@@ -1,0 +1,14 @@
+{
+  // Cloudflare Worker config for `npx wrangler deploy` (git-connected Workers build).
+  // Duyichu is a PURE STATIC site (no backend) → it only serves ./dist as static
+  // assets; there is no worker.js / no `main`, no KV, no runtime secrets.
+  // `name` must match the Worker's name in the Cloudflare dashboard.
+  "name": "duyichu",
+  "compatibility_date": "2025-01-01",
+  "assets": {
+    "directory": "./dist",
+    // Serve the branded dist/404.html for unknown routes.
+    "not_found_handling": "404-page"
+  },
+  "observability": { "enabled": true }
+}
