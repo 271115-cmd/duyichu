@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <defs>
+    <radialGradient id="bg" cx="32%" cy="30%" r="90%">
+      <stop offset="0%" stop-color="#1F6BED"/>
+      <stop offset="60%" stop-color="#0759A2"/>
+      <stop offset="100%" stop-color="#042F57"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <g stroke="#F4FF1E" stroke-opacity="0.06" stroke-width="1">
+    <line x1="0" y1="450" x2="1200" y2="450"/><line x1="0" y1="600" x2="1200" y2="600"/><line x1="0" y1="750" x2="1200" y2="750"/>
+    <line x1="300" y1="0" x2="300" y2="1200"/><line x1="600" y1="0" x2="600" y2="1200"/><line x1="900" y1="0" x2="900" y2="1200"/>
+  </g>
+  <text x="600" y="575" font-family="'Noto Serif SC','Songti SC',serif" font-weight="900" font-size="240" fill="#F4FF1E" text-anchor="middle">都<tspan fill="#FF1EC7">一</tspan>处</text>
+  <text x="600" y="678" font-family="'Archivo','Helvetica',sans-serif" font-weight="800" font-size="40" letter-spacing="14" fill="#FFFFFF" text-anchor="middle">D U Y I C H U</text>
+  <text x="600" y="722" font-family="'Archivo','Helvetica',sans-serif" font-weight="700" font-size="22" letter-spacing="6" fill="#F4FF1E" text-anchor="middle">THE ONLY PLACE · IMPERIAL SHAOMAI · BEIJING</text>
+  <text x="600" y="812" font-family="'Archivo','Helvetica',sans-serif" font-weight="700" font-size="20" letter-spacing="10" fill="#5196E8" text-anchor="middle">SINCE 1738 · 乾隆御赐</text>
+</svg>

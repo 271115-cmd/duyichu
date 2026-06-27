@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>都一处 Duyichu | Since 1738</title>
+  <meta name="description" content="都一处 Duyichu — Beijing's imperial shaomai house, named by the Qianlong Emperor and serving its 24-fold dumplings on Qianmen Street since 1738. A National Intangible Cultural Heritage.">
+  <meta name="theme-color" content="#1F6BED">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="都一处 Duyichu">
+  <meta property="og:title" content="都一处 Duyichu — The Only Place · Imperial Shaomai since 1738">
+  <meta property="og:description" content="都一处 Duyichu — Beijing's imperial shaomai house, named by the Qianlong Emperor and serving its 24-fold dumplings on Qianmen Street since 1738. A National Intangible Cultural Heritage.">
+  <meta property="og:image" content="/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="都一处 Duyichu — The Only Place">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="都一处 Duyichu — The Only Place · Imperial Shaomai since 1738">
+  <meta name="twitter:description" content="都一处 Duyichu — Beijing's imperial shaomai house, named by the Qianlong Emperor and serving its 24-fold dumplings on Qianmen Street since 1738. A National Intangible Cultural Heritage.">
+  <meta name="twitter:image" content="/og-image.png">
+
+  <!-- Structured data — Restaurant / LocalBusiness. Relative URLs resolve
+       against whatever domain this deploys to, so no hard-coded host. If you
+       have a production domain, set @id/url/image to absolute URLs for richer
+       results. Facts are the canonical ones (founded 1738, named 1752, 36
+       Qianmen St, daily 10:00–21:00); no ratings are invented. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "@id": "#duyichu",
+    "name": "都一处 Duyichu",
+    "alternateName": "Duyichu Shaomai — The Only Place",
+    "description": "Beijing's imperial shaomai house, named by the Qianlong Emperor in 1752 and serving its 24-fold dumplings on Qianmen Street since 1738. A National Intangible Cultural Heritage.",
+    "image": "/og-image.png",
+    "logo": "/favicon.svg",
+    "slogan": "The Only Place",
+    "foundingDate": "1738",
+    "servesCuisine": ["Shaomai", "Beijing", "Chinese"],
+    "priceRange": "¥¥",
+    "currenciesAccepted": "CNY",
+    "paymentAccepted": "Cash, UnionPay, Alipay, WeChat Pay",
+    "telephone": "+86-10-6301-2841",
+    "email": "reservations@duyichu.com",
+    "hasMenu": "/menu.html",
+    "acceptsReservations": true,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "No. 36 Qianmen Street",
+      "addressLocality": "Dongcheng",
+      "addressRegion": "Beijing",
+      "addressCountry": "CN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 39.89473,
+      "longitude": 116.39204
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "10:00",
+      "closes": "21:00"
+    },
+    "department": [
+      {
+        "@type": "Restaurant",
+        "name": "都一处 — 前门店 (Qianmen)",
+        "servesCuisine": "Shaomai",
+        "address": { "@type": "PostalAddress", "streetAddress": "No. 36 Qianmen Street", "addressLocality": "Dongcheng", "addressRegion": "Beijing", "addressCountry": "CN" },
+        "geo": { "@type": "GeoCoordinates", "latitude": 39.89473, "longitude": 116.39204 }
+      },
+      {
+        "@type": "Restaurant",
+        "name": "都一处 — 永定门店 (Yongdingmen)",
+        "servesCuisine": "Shaomai",
+        "address": { "@type": "PostalAddress", "streetAddress": "Yongdingmen Inner East Street", "addressLocality": "Dongcheng", "addressRegion": "Beijing", "addressCountry": "CN" },
+        "geo": { "@type": "GeoCoordinates", "latitude": 39.8718, "longitude": 116.3955 }
+      },
+      {
+        "@type": "Restaurant",
+        "name": "都一处 — 方庄店 (Fangzhuang)",
+        "servesCuisine": "Shaomai",
+        "address": { "@type": "PostalAddress", "streetAddress": "Pufang Road", "addressLocality": "Fengtai", "addressRegion": "Beijing", "addressCountry": "CN" },
+        "geo": { "@type": "GeoCoordinates", "latitude": 39.8647, "longitude": 116.43067 }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="/src/style.css" />
+  <!-- start the (small) first model downloading before the JS bundle parses -->
+  <link rel="preload" href="/model-tiny.glb" as="fetch" crossorigin="anonymous">
+  <!-- warm the connection to the 高德/Amap map host (used when an Amap key is set) -->
+  <link rel="dns-prefetch" href="https://webapi.amap.com">
+  <link rel="preconnect" href="https://webapi.amap.com" crossorigin>
+
+</head>
+<body data-title-key="title.home">
+  <a href="#main-content" class="skip-link" data-i18n="a11y.skip">Skip to main content</a>
+  <div id="page-transition" aria-hidden="true"><span class="pt-mark">都一处</span></div>
+  <!-- Poster preloader: a designed first paint, not a spinner. Returning
+       visitors skip the 3D model entirely (sessionStorage), so they never see it. -->
+  <div id="preloader" aria-label="Loading" data-i18n-aria="aria.loading">
+    <div class="preloader-poster">
+      <div class="pl-brand">都<span>一</span>处</div>
+      <div class="pl-tagline">THE ONLY PLACE · SINCE 1738</div>
+    </div>
+    <div class="preloader-bar-container"><div class="preloader-bar"></div></div>
+    <div class="preloader-percent">0%</div>
+  </div>
+  
+  <div id="cursor" aria-hidden="true"></div>
+  <div id="cursor-text" aria-hidden="true">View</div>
+  
+  <canvas id="webgl-canvas" aria-hidden="true"></canvas>
+  
+  <div id="landing-ui">
+    <div class="landing-header">
+      <p class="landing-title" data-i18n="ld.title">DUYICHU</p>
+      <p class="landing-subtitle" data-i18n="ld.sub">Since 1738</p>
+    </div>
+    <div class="landing-prompt">
+      <p class="prompt-text" data-i18n="ld.prompt">Click the red house to enter</p>
+      <div class="prompt-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+      </div>
+    </div>
+  </div>
+  
+  <div data-barba="wrapper">
+    
+    <main data-barba="container" data-barba-namespace="home" id="main-content" tabindex="-1">
+      
+      <nav role="navigation" data-cursor="var(--pink-3)">
+        <a href="/" class="nav-logo">都一处</a>
+        <div class="nav-links">
+          <a href="/" class="nav-link is-active" data-i18n="nav.home">Home</a>
+          <a href="/heritage.html" class="nav-link" data-i18n="nav.heritage">Heritage</a>
+          <a href="/menu.html" class="nav-link" data-i18n="nav.menu">Menu</a>
+          <a href="/gifts.html" class="nav-link" data-i18n="nav.gifts">Gifts</a>
+          <a href="/contact.html" class="nav-link" data-i18n="nav.contact">Visit Us</a>
+        </div>
+      </nav>
+
+      <!-- CHAPTER 00 - HERO — just the wordmark + a scroll affordance -->
+      <section class="chapter theme-hero" data-cursor="var(--pink-3)">
+        <div class="hero-stage">
+          <p class="hero-eyebrow" data-i18n="home.eyebrow">Imperial shaomai · Qianmen, Beijing · since 1738</p>
+          <h1 class="hero-title" aria-label="都一处">
+            <span class="mask" style="display:inline-block" aria-hidden="true"><span class="hero-char">都</span></span>
+            <span class="mask" style="display:inline-block" aria-hidden="true"><span class="hero-char accent">一</span></span>
+            <span class="mask" style="display:inline-block" aria-hidden="true"><span class="hero-char">处</span></span>
+          </h1>
+        </div>
+        <!-- scroll cue: tells visitors the page continues below (revealed after entry) -->
+        <div class="scroll-cue" aria-hidden="true">
+          <span class="scroll-cue-text" data-i18n="home.scroll">Scroll to explore</span>
+          <svg class="scroll-cue-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+      </section>
+
+      <!-- CHAPTER 01 - CREDENTIALS — the trust signals, given a screen of their own -->
+      <section class="chapter theme-story creds-chapter" data-cursor="var(--yellow)">
+        <span class="chapter-index" data-i18n="h.cred.idx">Credentials</span>
+        <span class="chapter-tag" data-i18n="h.cred.tag">Earned, not claimed</span>
+        <div class="creds-feature">
+          <h2 class="creds-title" data-i18n="h.cred.title">Three centuries<br>of <em>standing</em></h2>
+          <!-- Each credential carries an emblem. These are original brand-style
+               marks (SVG, China-safe); to show an official certification logo,
+               swap the <svg> for an <img> of the real mark you're licensed to use. -->
+          <div class="credbar credbar--feature">
+            <span class="cb-cell">
+              <span class="cb-emblem" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M24 5.5v3"/><rect x="19" y="8.5" width="10" height="3" rx="1"/>
+                  <ellipse cx="24" cy="24" rx="11" ry="12.5"/>
+                  <path d="M24 11.5v25M16.4 14.5c-2.1 5.2-2.1 13.8 0 19M31.6 14.5c2.1 5.2 2.1 13.8 0 19"/>
+                  <rect x="20" y="36.5" width="8" height="2.6" rx="1"/><path d="M24 39v3.5"/>
+                </svg>
+              </span>
+              <b class="cb-mark">1738</b><span class="cb-sub" data-i18n="cb.founded">Founded</span>
+            </span>
+            <span class="cb-cell">
+              <span class="cb-emblem cb-emblem--seal" aria-hidden="true">
+                <svg viewBox="0 0 48 48">
+                  <rect x="8" y="8" width="32" height="32" rx="6" fill="#c8121f"/>
+                  <rect x="11" y="11" width="26" height="26" rx="3.5" fill="none" stroke="#f4edde" stroke-width="1.4"/>
+                  <text x="24" y="25.5" text-anchor="middle" dominant-baseline="central" fill="#f4edde" font-weight="900" font-size="18">御</text>
+                </svg>
+              </span>
+              <b class="cb-mark">乾隆御赐</b><span class="cb-sub" data-i18n="cb.imperial">Imperial decree · 1752</span>
+            </span>
+            <span class="cb-cell">
+              <span class="cb-emblem" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="24" cy="24" r="13"/><circle cx="24" cy="24" r="4.6"/>
+                  <path d="M29 24L36.5 24 M28.3 26.5L34.8 30.3 M26.5 28.3L30.3 34.8 M24 29L24 36.5 M21.5 28.3L17.7 34.8 M19.7 26.5L13.2 30.3 M19 24L11.5 24 M19.7 21.5L13.2 17.7 M21.5 19.7L17.7 13.2 M24 19L24 11.5 M26.5 19.7L30.3 13.2 M28.3 21.5L34.8 17.7"/>
+                </svg>
+              </span>
+              <b class="cb-mark">国家级非遗</b><span class="cb-sub" data-i18n="cb.heritage">National heritage</span>
+            </span>
+            <span class="cb-cell">
+              <span class="cb-emblem" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18.5 27.5L15.5 42l6-3.6 2.5 4.6 2.5-4.6 6 3.6-3-14.5"/>
+                  <circle cx="24" cy="19.5" r="11.5"/><circle cx="24" cy="19.5" r="7"/>
+                  <path d="M24 15l1.4 2.9 3.2.4-2.3 2.2.6 3.1-2.9-1.5-2.9 1.5.6-3.1-2.3-2.2 3.2-.4z"/>
+                </svg>
+              </span>
+              <b class="cb-mark">中华老字号</b><span class="cb-sub" data-i18n="cb.brand">Time-honored brand</span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHAPTERS 01–03 — ONE pinned, scroll-scrubbed STAGE. As you scroll, the
+           three regions' depth layers (far numeral · mid seal · foreground copy)
+           ZOOM and SLIDE past each other on overlapping ranges — a continuous
+           shot, not a slideshow. The stage background colour travels with the
+           scrub. reelstage.js builds it; falls back to stacked panels with no
+           JS / reduced-motion / on mobile. -->
+      <section class="chapter reel-stage reel-chapter" data-cursor="var(--red)" aria-label="The story of 都一处">
+
+        <!-- REGION 01 · 1738 — The Founding (the far numeral + the legend copy) -->
+        <div class="rs-region r1 theme-history" data-cursor="var(--red)" role="region" aria-label="Chapter 1 of 3 — 1738, the founding">
+          <span class="rs-bgnum" aria-hidden="true">1738</span>
+          <div class="rs-fg">
+            <span class="reel-eyebrow" data-i18n="h.hist.tag">Origins · 1738</span>
+            <h2 class="rs-title" data-i18n="h.hist.title">A lantern still<br><em>burning</em> in the dark</h2>
+            <p class="rs-body" data-i18n="h.hist.body">On New Year's Eve, 1738, every shop in Beijing had shuttered against the cold — except one small tavern in Qianmen, its single lantern still lit. A traveler stepped in from the frozen street to eat.</p>
+            <a href="/heritage.html" class="reel-cta" data-magnetic data-i18n="h.hist.cta">Enter the timeline →</a>
+          </div>
+        </div>
+
+        <!-- REGION 02 · 1752 — The Decree. The lacquer seal grows from a point
+             and zooms THROUGH the camera into the next region (the shared object
+             that crosses the seam). -->
+        <div class="rs-region r2 theme-story" data-cursor="var(--yellow)" data-sound="bell" role="region" aria-label="Chapter 2 of 3 — 1752, the imperial decree">
+          <span class="rs-bgnum" aria-hidden="true">1752</span>
+          <span class="rs-seal" aria-hidden="true">都</span>
+          <div class="rs-fg">
+            <span class="reel-eyebrow" data-i18n="h.story.tag">Emperor Qianlong</span>
+            <h2 class="rs-title" data-i18n="h.story.title">The traveler was<br>the <em>Emperor</em></h2>
+            <p class="rs-body" data-i18n="h.story.body">It was Qianlong, returning to the Forbidden City in secret. So moved by the warmth and the dumplings, he bestowed a name that would outlive dynasties — declaring it the one and only place of its kind in all the capital.</p>
+            <a href="/heritage.html" class="reel-cta" data-magnetic data-i18n="h.story.cta">Read the legend →</a>
+          </div>
+        </div>
+
+        <!-- REGION 03 · 24 — The Craft (the dishes rise in with staggered depth) -->
+        <div class="rs-region r3 theme-craft" data-cursor="var(--yellow)" role="region" aria-label="Chapter 3 of 3 — the 24-fold craft">
+          <span class="rs-bgnum" aria-hidden="true">24</span>
+          <div class="rs-fg">
+            <span class="reel-eyebrow" data-i18n="h.craft.tag">By hand · 24 folds</span>
+            <h2 class="rs-title" data-i18n="h.craft.title">Folded 24 times<br>by <em>hand</em></h2>
+            <div class="craft-grid rs-chips">
+              <div class="craft-chip rs-chip" data-magnetic data-i18n="dish.shrimp">Fresh Shrimp</div>
+              <div class="craft-chip rs-chip" data-magnetic data-i18n="dish.crab">Crab Roe</div>
+              <div class="craft-chip rs-chip" data-magnetic data-i18n="dish.three">Three Delicacies</div>
+              <div class="craft-chip rs-chip" data-magnetic data-i18n="dish.veg">Vegetable</div>
+              <div class="craft-chip rs-chip" data-magnetic data-i18n="dish.lamb">Lamb</div>
+            </div>
+            <a href="/menu.html" class="reel-cta" data-magnetic data-i18n="h.craft.cta">See the full menu →</a>
+          </div>
+        </div>
+
+        <!-- region navigator (also a scroll-progress indicator) -->
+        <div class="reel-progress" role="group" aria-label="The story">
+          <button type="button" class="reel-dot active" aria-current="true" aria-label="1738 — The founding"><span class="rd-label">1738</span></button>
+          <button type="button" class="reel-dot" aria-label="1752 — The imperial name"><span class="rd-label">1752</span></button>
+          <button type="button" class="reel-dot" aria-label="24 folds — the craft"><span class="rd-label">24</span></button>
+        </div>
+
+      </section>
+
+      <!-- CHAPTER 04 - THE HOUSES (full-screen map immersion: pinned, the
+           framed map expands to full bleed, then scroll tours the branches) -->
+      <section class="chapter theme-arch map-chapter" data-cursor="var(--yellow)">
+        <div class="map-stage">
+          <div id="locations-map" aria-label="Map of the three Duyichu houses in Beijing" data-i18n-aria="aria.mapHome"></div>
+          <div class="map-hud">
+            <div class="map-hud-head">
+              <span class="chapter-index" data-i18n="h.map.idx">04 / The Houses</span>
+              <span class="chapter-tag" data-i18n="h.map.tag">Three houses · Beijing</span>
+              <div class="block-label" data-i18n="h.map.label">Chapter 04 — The Houses</div>
+              <h2 class="block-display map-title" data-i18n="h.map.title">One name,<br>three <em>tables</em></h2>
+            </div>
+            <div class="loc-cards">
+              <button type="button" class="loc-card" data-loc="0">
+                <span class="loc-num">01</span>
+                <span class="loc-cn" data-i18n="loc.1.name">Qianmen</span>
+                <span class="loc-en" data-i18n="loc.1.desc">36 Qianmen St · Since 1738</span>
+              </button>
+              <button type="button" class="loc-card" data-loc="1">
+                <span class="loc-num">02</span>
+                <span class="loc-cn" data-i18n="loc.2.name">Yongdingmen</span>
+                <span class="loc-en" data-i18n="loc.2.desc">Yongdingmen Inner East St</span>
+              </button>
+              <button type="button" class="loc-card" data-loc="2">
+                <span class="loc-num">03</span>
+                <span class="loc-cn" data-i18n="loc.3.name">Fangzhuang</span>
+                <span class="loc-en" data-i18n="loc.3.desc">Fangzhuang · Pufang Rd</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHAPTER 05 - CONTACT -->
+      <section class="chapter theme-contact" id="contact" data-cursor="var(--pink-2)">
+        <span class="chapter-index" data-i18n="h.visit.idx">05 / Visit</span>
+        <span class="chapter-tag" data-i18n="h.visit.tag">Qianmen · Beijing</span>
+        <div class="contact-grid" style="margin-top:auto;">
+          <div class="contact-brand" data-i18n="h.visit.brand">都一处 —<br>The one and<br><span style="color:var(--accent);">only place.</span></div>
+          <div>
+            <div class="contact-col-title" data-i18n="h.visit.col1">Visit</div>
+            <div class="contact-links">
+              <span data-i18n="h.visit.addr1">No. 36 Qianmen Street</span><span data-i18n="h.visit.addr2">Dongcheng, Beijing</span>
+              <span data-i18n="ct.hours">Open 10:00 — 21:00</span>
+              <span data-i18n="v.price.value">¥80 – 150 · about US$11 – 21</span>
+              <a href="tel:+861063012841">+86 10 6301 2841</a>
+            </div>
+          </div>
+          <div>
+            <div class="contact-col-title" data-i18n="h.visit.col2">Index</div>
+            <div class="contact-links"><a href="/heritage.html" data-i18n="nav.heritage">Heritage</a><a href="/menu.html" data-i18n="nav.menu">Menu</a><a href="/gifts.html" data-i18n="nav.gifts">Gifts</a><a href="/contact.html" data-i18n="nav.contact">Visit Us</a></div>
+          </div>
+        </div>
+        <div class="contact-bottom"><span data-i18n="h.visit.copy">Duyichu Shaomai · All rights reserved</span><span data-i18n="footer.est">1738 — {NOW}</span></div>
+      </section>
+
+    </main>
+    
+  </div><script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline · 都一处 Duyichu</title>
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <meta name="theme-color" content="#1F6BED">
+  <style>
+    :root { --blue:#1F6BED; --yellow:#F4FF1E; --ink:#0E0B08; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html,body { height:100%; }
+    body {
+      background:var(--blue); color:#fff; min-height:100%;
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      font-family:'Archivo',system-ui,-apple-system,Segoe UI,Roboto,sans-serif; padding:2rem;
+    }
+    .wrap { max-width:34rem; }
+    .seal {
+      font-family:'Noto Serif SC','Songti SC','STSong',serif; font-weight:900;
+      font-size:clamp(5rem,22vw,9rem); line-height:1; color:var(--yellow);
+      opacity:.95; margin-bottom:1.5rem;
+    }
+    .eyebrow { font-weight:800; letter-spacing:.28em; text-transform:uppercase; font-size:.72rem; color:var(--yellow); margin-bottom:1rem; }
+    h1 { font-weight:900; font-size:clamp(1.8rem,6vw,3.2rem); line-height:1.05; letter-spacing:-.02em; }
+    h1 em { font-style:italic; color:var(--yellow); }
+    p { margin-top:1.2rem; font-size:1.05rem; line-height:1.6; opacity:.92; }
+    .actions { margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+    .btn {
+      display:inline-block; font-weight:800; letter-spacing:.04em; font-size:.95rem;
+      padding:.85rem 1.6rem; border-radius:100px; text-decoration:none; cursor:pointer; border:2px solid var(--yellow);
+    }
+    .btn.solid { background:var(--yellow); color:var(--ink); }
+    .btn.ghost { color:var(--yellow); background:transparent; }
+    .btn:focus-visible { outline:3px solid #fff; outline-offset:3px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="seal" aria-hidden="true">都</div>
+    <p class="eyebrow">都一处 · The Only Place</p>
+    <h1>You&rsquo;re <em>offline</em></h1>
+    <p>The lantern&rsquo;s still lit — you&rsquo;ve just lost your connection. Reconnect, and the house will be here.</p>
+    <div class="actions">
+      <button class="btn solid" onclick="location.reload()">Try again</button>
+      <a class="btn ghost" href="/">Return home</a>
+    </div>
+  </main>
+</body>
+</html>

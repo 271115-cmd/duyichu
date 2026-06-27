@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <defs><radialGradient id="g" cx="35%" cy="32%" r="95%"><stop offset="0" stop-color="#FF4283"/><stop offset="1" stop-color="#A81A50"/></radialGradient></defs>
+  <rect width="1200" height="1200" fill="url(#g)"/>
+  <g stroke="#06203F" stroke-opacity="0.10" stroke-width="1"><line x1="0" y1="400" x2="1200" y2="400"/><line x1="0" y1="800" x2="1200" y2="800"/><line x1="400" y1="0" x2="400" y2="1200"/><line x1="800" y1="0" x2="800" y2="1200"/></g>
+  <text x="600" y="430" font-family="'Archivo','Helvetica',sans-serif" font-weight="800" font-size="30" letter-spacing="11" fill="#06203F" text-anchor="middle">都一处 · DUYICHU</text>
+  <text x="600" y="615" font-family="'Archivo','Helvetica',sans-serif" font-weight="900" font-size="158" letter-spacing="-4" fill="#06203F" text-anchor="middle">Menu</text>
+  <text x="600" y="715" font-family="'Archivo','Helvetica',sans-serif" font-weight="700" font-size="40" fill="#06203F" text-anchor="middle">Hand-folded shaomai · twenty-four pleats</text>
+  <text x="600" y="825" font-family="'Archivo','Helvetica',sans-serif" font-weight="800" font-size="24" letter-spacing="7" fill="#F4FF1E" text-anchor="middle">BY HAND · WITH ALLERGEN TAGS · SINCE 1738</text>
+</svg>

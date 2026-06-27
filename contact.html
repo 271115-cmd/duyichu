@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>Visit — 都一处 / Beijing</title>
+  <meta name="description" content="Visit 都一处 Duyichu in Beijing — three houses, opening hours, prices, the nearest metro, a card for your taxi driver, and table reservations for international guests.">
+  <meta name="theme-color" content="#1F6BED">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="都一处 Duyichu">
+  <meta property="og:title" content="Visit Us · 都一处 Duyichu">
+  <meta property="og:description" content="Visit 都一处 Duyichu in Beijing — three houses, opening hours, prices, the nearest metro, a card for your taxi driver, and table reservations for international guests.">
+  <meta property="og:image" content="/og-visit.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+  <meta property="og:image:alt" content="都一处 Duyichu — The Only Place">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Visit Us · 都一处 Duyichu">
+  <meta name="twitter:description" content="Visit 都一处 Duyichu in Beijing — three houses, opening hours, prices, the nearest metro, a card for your taxi driver, and table reservations for international guests.">
+  <meta name="twitter:image" content="/og-visit.png">
+  <script type="application/ld+json">
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "/" },
+    { "@type": "ListItem", "position": 2, "name": "Visit Us", "item": "/contact.html" }
+  ] }
+  </script>
+  <link rel="stylesheet" href="/src/style.css">
+  <!-- warm the connection to the 高德/Amap map host (used when an Amap key is set) -->
+  <link rel="dns-prefetch" href="https://webapi.amap.com">
+  <link rel="preconnect" href="https://webapi.amap.com" crossorigin>
+  <style>
+    .reveal-text { display: inline-block; opacity: 0; }
+    .mask { overflow: hidden; display: block; }
+  </style>
+</head>
+<body class="theme-contact" data-hero="lantern" data-title-key="title.visit">
+  <a href="#main-content" class="skip-link" data-i18n="a11y.skip">Skip to main content</a>
+  <div id="page-transition" aria-hidden="true"><span class="pt-mark">都一处</span></div>
+  <canvas id="webgl-canvas" class="inactive" aria-hidden="true"></canvas>
+  <div id="cursor" aria-hidden="true"></div>
+  <div id="cursor-text" aria-hidden="true"></div>
+
+  <div data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="contact" id="main-content" tabindex="-1">
+
+      <nav role="navigation">
+        <a href="/" class="nav-logo">都一处</a>
+        <div class="nav-links">
+          <a href="/" class="nav-link" data-i18n="nav.home">Home</a>
+          <a href="/heritage.html" class="nav-link" data-i18n="nav.heritage">Heritage</a>
+          <a href="/menu.html" class="nav-link" data-i18n="nav.menu">Menu</a>
+          <a href="/gifts.html" class="nav-link" data-i18n="nav.gifts">Gifts</a>
+          <a href="/contact.html" class="nav-link is-active" data-i18n="nav.contact">Visit Us</a>
+        </div>
+      </nav>
+
+      <!-- ════════ 1 · HERO — the page at a glance ════════ -->
+      <section class="chapter theme-contact" data-cursor="var(--pink-2)">
+        <span class="chapter-index" data-i18n="ct.idx">Visit</span>
+        <span class="chapter-tag" data-i18n="ct.tag">Qianmen · Beijing</span>
+        <div class="visit-hero">
+          <div class="block-label" style="text-align:center;" data-i18n="home.eyebrow">Imperial shaomai · Qianmen, Beijing · since 1738</div>
+          <h1 class="block-display" style="font-size:clamp(2.8rem,11vw,9.5rem);" data-i18n="ct.title">The Only<br><em>Place</em></h1>
+          <p class="hero-sub" style="margin:1.4rem auto 0;color:#fff;" data-i18n="ct.sub">
+            <span class="mask" style="display:inline"><span class="reveal-text">A {YEARS}-year-old table, still set in the heart of old Beijing.</span></span>
+          </p>
+          <a href="#reserve" class="visit-hero-cta" data-i18n="v.cta">Reserve a table &rarr;</a>
+        </div>
+        <span class="scroll-cue visit-scroll" aria-hidden="true">
+          <span class="scroll-cue-text" data-i18n="home.scroll">Scroll to explore</span>
+          <svg class="scroll-cue-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </span>
+      </section>
+
+      <!-- ════════ 2 · THE HOUSES — where to find us (3 branches) ════════ -->
+      <section class="chapter theme-arch visit-map-chapter" data-cursor="var(--yellow)">
+        <!-- full-bleed 3D Beijing -->
+        <div id="visit-map" aria-label="3D map of Beijing with the three Duyichu houses" data-i18n-aria="aria.mapVisit">
+          <div class="map-legend" aria-hidden="true">
+            <span><i class="lg-sw lg-axis"></i>中轴线 Central axis</span>
+            <span><i class="lg-sw lg-ring"></i><span data-i18n="v.lg.ring">Ring roads</span></span>
+            <span><i class="lg-sw lg-pin"></i>都一处</span>
+          </div>
+        </div>
+        <span class="chapter-index" data-i18n="v.loc.idx">Locations</span>
+        <span class="chapter-tag" data-i18n="h.map.tag">Three houses · Beijing</span>
+        <!-- overlay HUD: heading top, house cards bottom -->
+        <div class="visit-map-hud">
+          <div class="vmh-head">
+            <div class="block-label" data-i18n="v.loc.label">Find your nearest house</div>
+            <h2 class="block-display" style="font-size:clamp(2rem,5.5vw,4.4rem);" data-i18n="h.map.title">One name,<br>three <em>tables</em></h2>
+          </div>
+          <div class="vmh-foot">
+            <span class="map-hint" data-i18n="v.lg.hint">Tap a house to fly there</span>
+            <div class="loc-cards">
+              <button type="button" class="loc-card" data-loc="0"><span class="loc-num">01</span><span class="loc-cn" data-i18n="loc.1.name">Qianmen</span><span class="loc-en" data-i18n="loc.1.desc">36 Qianmen St · Since 1738</span></button>
+              <button type="button" class="loc-card" data-loc="1"><span class="loc-num">02</span><span class="loc-cn" data-i18n="loc.2.name">Yongdingmen</span><span class="loc-en" data-i18n="loc.2.desc">Yongdingmen Inner East St</span></button>
+              <button type="button" class="loc-card" data-loc="2"><span class="loc-num">03</span><span class="loc-cn" data-i18n="loc.3.name">Fangzhuang</span><span class="loc-en" data-i18n="loc.3.desc">Fangzhuang · Pufang Rd</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════ 3 · KNOW BEFORE YOU GO — every practical detail, in one place ════════ -->
+      <section class="chapter theme-history" data-cursor="var(--red)">
+        <span class="chapter-index" data-i18n="v.plan.idx">Essentials</span>
+        <span class="chapter-tag" data-i18n="ct.hours">Open 10:00 — 21:00</span>
+        <div style="max-width:1300px;margin:auto auto;width:100%;">
+          <div class="block-label" data-i18n="gk.title">Good to know</div>
+          <h2 class="block-display" style="font-size:clamp(2rem,5.2vw,3.8rem);margin-bottom:2rem;" data-i18n="v.plan.title">Plan your <em>visit</em></h2>
+
+          <div class="know-grid">
+            <div class="gk-item">
+              <span class="gk-label" data-i18n="v.hours.label">Open hours</span>
+              <span class="gk-value" data-i18n="v.hours.value">Daily 10:00 – 21:00</span>
+              <span class="gk-note" data-i18n="v.hours.last">Last seating 20:15</span>
+              <span class="gk-note" data-i18n="v.hours.note">Open daily, including most public holidays. Hours may shift during Spring Festival.</span>
+            </div>
+            <div class="gk-item">
+              <span class="gk-label" data-i18n="v.price.label">Average per person</span>
+              <span class="gk-value" data-i18n="v.price.value">¥80 – 150 · about US$11 – 21</span>
+            </div>
+            <div class="gk-item">
+              <span class="gk-label" data-i18n="gk.pay.l">Payment</span>
+              <span class="gk-value" data-i18n="gk.pay.v">Cash (RMB) and UnionPay always welcome. Alipay &amp; WeChat Pay accept foreign cards in-app; a physical Visa/Mastercard may not be.</span>
+            </div>
+            <div class="gk-item">
+              <span class="gk-label" data-i18n="gk.tax.l">Tax</span>
+              <span class="gk-value" data-i18n="gk.tax.v">Included — the price you see is the price you pay.</span>
+              <span class="gk-note"><strong data-i18n="gk.tip.l">Tipping</strong> · <span data-i18n="gk.tip.v">Not expected. Service is never added to the bill.</span></span>
+            </div>
+            <div class="gk-item">
+              <span class="gk-label" data-i18n="gk.lang.l">Language</span>
+              <span class="gk-value" data-i18n="gk.lang.v">Our front desk will help you in English. Show this page or your booking on arrival.</span>
+            </div>
+            <div class="gk-item">
+              <span class="gk-label" data-i18n="gk.diet.l">Dietary</span>
+              <span class="gk-value" data-i18n="gk.diet.v">Six fillings, each allergen-tagged. Tell us about any allergy when you book.</span>
+              <a class="gk-link" href="/menu.html" data-i18n="h.craft.cta">See the full menu &rarr;</a>
+            </div>
+          </div>
+
+          <!-- getting there: the nearest metro + the show-your-driver card -->
+          <div class="getting-there">
+            <div class="gk-item gt-metro">
+              <span class="gk-label" data-i18n="v.metro.label">Nearest metro</span>
+              <span class="gk-value" data-i18n="v.metro.value">Qianmen Station · Lines 2 &amp; 8</span>
+              <span class="gk-note" data-i18n="v.metro.walk">≈ 5 min walk</span>
+            </div>
+            <!-- Show-your-driver card: name + address stay in Chinese on purpose -->
+            <div class="taxi-card">
+              <div class="tc-label" data-i18n="v.taxi.label">Show this to your taxi driver</div>
+              <div class="tc-cn">
+                <div class="tc-name">都一处</div>
+                <div class="tc-addr" id="tc-addr">北京市东城区前门大街 36 号</div>
+              </div>
+              <button type="button" class="tc-copy" id="tc-copy" data-i18n="v.taxi.copy">Copy address</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════ 4 · RESERVE — book a table ════════ -->
+      <section class="chapter theme-craft" id="reserve" data-cursor="var(--yellow)">
+        <span class="chapter-index" data-i18n="ct.reserve.idx">Reserve</span>
+        <span class="chapter-tag" data-i18n="ct.hours">Open 10:00 — 21:00</span>
+        <div style="max-width:1300px;margin:auto auto;width:100%;">
+          <div class="block-label" data-i18n="ct.book.label">Book a Table</div>
+          <h2 class="block-display" style="font-size:clamp(2rem,5.2vw,3.8rem);margin-bottom:1.8rem;" data-i18n="ct.book.title">Reserve your <em>table</em></h2>
+
+          <div class="reserve-grid">
+            <!-- ── the booking form (works with NO Chinese SIM / app / email client) ── -->
+            <div class="booking-col">
+              <a id="reserve-online" class="reserve-online" href="#" target="_blank" rel="noopener" hidden>
+                <span class="ro-main" data-i18n="v.book.online">Reserve online</span>
+                <span class="ro-sub" data-i18n="v.book.onlineSub">Secure booking · international cards accepted</span>
+              </a>
+              <p class="reserve-or" data-i18n="v.book.or">or request a table below — we reply within 2 hours</p>
+
+              <form id="reservation-form" class="form" novalidate>
+                <div class="form-row">
+                  <div class="field"><label for="r-name" data-i18n="ct.f.name">Name</label><input id="r-name" name="name" type="text" required placeholder="Your name" data-i18n-ph="ct.f.namePh" autocomplete="name"></div>
+                  <div class="field"><label for="r-phone" data-i18n="ct.f.phone">Phone / Email</label><input id="r-phone" name="phone" type="text" required placeholder="+86 … / you@email.com" autocomplete="tel"></div>
+                </div>
+                <div class="form-row">
+                  <div class="field"><label for="r-date" data-i18n="ct.f.date">Date</label><input id="r-date" name="date" type="date" required></div>
+                  <div class="field"><label for="r-time" data-i18n="ct.f.time">Time</label><input id="r-time" name="time" type="time" required value="18:00"></div>
+                </div>
+                <div class="form-row">
+                  <div class="field"><label for="r-guests" data-i18n="ct.f.guests">Guests</label>
+                    <select id="r-guests" name="guests" required>
+                      <option value="1">1</option><option value="2" selected>2</option><option value="3">3</option>
+                      <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                      <option value="8">8</option><option value="10+">10+</option>
+                    </select>
+                  </div>
+                  <div class="field"><label for="r-room" data-i18n="ct.f.room">Seating</label>
+                    <select id="r-room" name="room">
+                      <option value="Main hall" data-i18n="ct.room.hall">Main hall</option>
+                      <option value="Private room" data-i18n="ct.room.private">Private room</option>
+                      <option value="Window" data-i18n="ct.room.window">Window</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field"><label for="r-notes" data-i18n="ct.f.notes">Requests</label><textarea id="r-notes" name="notes" placeholder="Allergies, occasion, preferences…" data-i18n-ph="ct.f.notesPh"></textarea></div>
+                <p class="reserve-response" data-i18n="v.book.response">We confirm every request within 2 hours, by email or phone.</p>
+                <button class="form-submit" type="submit" data-i18n="ct.submit">Confirm reservation</button>
+              </form>
+
+              <!-- confirmation: works with NO email client — copy or email -->
+              <div class="reserve-confirm" id="r-confirm" role="status" aria-live="polite" hidden>
+                <div class="rc-status"><span class="rc-dot"></span><strong data-i18n="v.book.confirmTitle">Request ready</strong> · <span data-i18n="v.book.status">Awaiting confirmation</span></div>
+                <p class="rc-body" data-i18n="v.book.confirmBody">We will confirm within 2 hours. Send the details by email, or copy them to book through your preferred channel.</p>
+                <pre class="rc-details" id="rc-details"></pre>
+                <div class="rc-actions">
+                  <a class="rc-btn rc-email" id="rc-email" href="#"><span data-i18n="v.book.sendEmail">Send by email</span></a>
+                  <button type="button" class="rc-btn rc-copy" id="rc-copy" data-i18n="v.book.copy">Copy details</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── other ways to book ── -->
+            <aside class="reserve-channels">
+              <div class="vp-wechat">
+                <div class="vp-label" data-i18n="ct.wechat">WeChat booking</div>
+                <!-- Locally generated QR (no external API → works in China). Swap
+                     public/wechat-qr.svg for the restaurant's real official-account code. -->
+                <div class="wechat-qr" aria-label="WeChat reservation QR code" data-i18n-aria="aria.wechatQr">
+                  <img id="wechat-qr-img" src="/wechat-qr.svg" alt="Scan to reserve on WeChat" data-i18n-alt="aria.wechatScan" width="200" height="200">
+                </div>
+                <p class="wechat-id">WeChat ID&nbsp; <b>duyichu1738</b></p>
+              </div>
+              <div class="vp-direct">
+                <span class="vp-label" data-i18n="ct.direct">Direct</span>
+                <a href="tel:+861063012841">+86 10 6301 2841</a>
+                <a href="mailto:reservations@duyichu.com">reservations@duyichu.com</a>
+              </div>
+            </aside>
+          </div>
+
+          <!-- guest reviews — links populated from the REVIEWS config in the script
+               below; the strip stays hidden until at least one URL is set. -->
+          <div class="rec-reviews" id="visit-reviews" hidden>
+            <span class="rec-reviews-label" data-i18n="cred.reviews">Read recent guest reviews</span>
+            <div class="rec-review-links" id="visit-review-links"></div>
+          </div>
+        </div>
+
+        <div class="contact-bottom"><span data-i18n="h.visit.copy">Duyichu Shaomai · All rights reserved</span><span data-i18n="footer.est">1738 — {NOW}</span></div>
+      </section>
+
+    </main>
+  </div>
+
+  <script type="module" src="/src/page.js"></script>
+  <script type="module">
+    import { t } from '/src/i18n.js';
+    import { playChime } from '/src/sound.js';
+
+    /* ──────────────────────────────────────────────────────────────
+       BOOKING CONFIG — set RESERVE_URL to your online reservation
+       platform link (one that accepts international credit cards, e.g.
+       Trip.com / OpenRice / Klook / SevenRooms). While it's empty the
+       "Reserve online" button stays hidden and guests use the request
+       form (which works with NO Chinese SIM, app, or email client).
+       ────────────────────────────────────────────────────────────── */
+    const RESERVE_URL = '';                         // ← paste your booking link here
+    const EMAIL = 'reservations@duyichu.com';
+
+    const online = document.getElementById('reserve-online');
+    if (online && RESERVE_URL) { online.href = RESERVE_URL; online.hidden = false; }
+
+    /* ── Guest reviews — paste each platform's page URL to surface a link.
+       Entries without a URL are skipped; if none are set the strip stays
+       hidden. ── */
+    const REVIEWS = [
+      { name: '大众点评 Dianping', url: '' },   // ← paste the restaurant's page URLs
+      { name: '美团 Meituan',      url: '' },
+      { name: 'TripAdvisor',       url: '' },
+      { name: 'Google',            url: '' },
+    ];
+    (() => {
+      const wrap = document.getElementById('visit-reviews');
+      const list = document.getElementById('visit-review-links');
+      if (!wrap || !list) return;
+      const live = REVIEWS.filter((r) => r.url);
+      if (!live.length) return;                  // nothing set yet → leave hidden
+      live.forEach((r) => {
+        const a = document.createElement('a');
+        a.className = 'rec-review-link'; a.href = r.url; a.target = '_blank'; a.rel = 'noopener';
+        a.textContent = r.name;
+        list.appendChild(a);
+      });
+      wrap.hidden = false;
+    })();
+
+    // ── hero "Reserve a table" → smooth-scroll to the reserve chapter ──
+    const heroCta = document.querySelector('.visit-hero-cta');
+    if (heroCta) heroCta.addEventListener('click', (e) => {
+      const target = document.getElementById('reserve');
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+
+    // ── hero scroll cue: reveal shortly after load, fade once the visitor moves ──
+    const scrollCue = document.querySelector('.visit-scroll');
+    if (scrollCue) {
+      setTimeout(() => scrollCue.classList.add('show'), 700);
+      window.addEventListener('scroll', () => scrollCue.classList.toggle('gone', window.scrollY > 40), { passive: true });
+    }
+
+    // ── "Show your taxi driver" — copy the Chinese name + address ──
+    const tcCopy = document.getElementById('tc-copy');
+    const tcAddr = document.getElementById('tc-addr');
+    async function copyText(text, btn, doneKey, backKey) {
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (_) {
+        // fallback for non-secure contexts: select a hidden textarea
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        ta.remove();
+      }
+      btn.textContent = t(doneKey); btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = t(backKey); btn.classList.remove('copied'); }, 1800);
+    }
+    if (tcCopy) tcCopy.addEventListener('click', () => copyText(`都一处\n${tcAddr.textContent.trim()}`, tcCopy, 'v.taxi.copied', 'v.taxi.copy'));
+
+    // ── Reservation request → confirmation that works offline-of-email ──
+    const form = document.getElementById('reservation-form');
+    const confirmBox = document.getElementById('r-confirm');
+    const details = document.getElementById('rc-details');
+    const emailBtn = document.getElementById('rc-email');
+    const copyBtn = document.getElementById('rc-copy');
+    let lastText = '';
+
+    if (form) {
+      // WCAG 3.3.1 / 4.1.3 — relay native validation to assistive tech: mark the
+      // field aria-invalid and describe it with its validationMessage on failure,
+      // and clear that as the visitor corrects it.
+      form.querySelectorAll('input, select, textarea').forEach((field) => {
+        const errId = field.id + '-err';
+        field.addEventListener('invalid', () => {
+          field.setAttribute('aria-invalid', 'true');
+          let err = document.getElementById(errId);
+          if (!err) {
+            err = document.createElement('span');
+            err.id = errId; err.className = 'field-err'; err.setAttribute('role', 'alert');
+            field.insertAdjacentElement('afterend', err);
+            const described = (field.getAttribute('aria-describedby') || '').trim();
+            field.setAttribute('aria-describedby', (described + ' ' + errId).trim());
+          }
+          err.textContent = field.validationMessage;
+        });
+        field.addEventListener('input', () => {
+          if (field.getAttribute('aria-invalid') === 'true') {
+            field.setAttribute('aria-invalid', 'false');
+            const err = document.getElementById(errId); if (err) err.textContent = '';
+          }
+        });
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        const f = new FormData(form);
+        const v = (k) => (f.get(k) || '').toString().trim();
+        const name = v('name'), phone = v('phone'), date = v('date'), time = v('time'),
+              guests = v('guests'), room = v('room'), notes = v('notes');
+
+        // bilingual request so the restaurant reads it whatever the guest's language
+        lastText = [
+          '都一处 — Reservation Request / 预订申请',
+          `Name 姓名: ${name}`, `Phone/Email 联系方式: ${phone}`,
+          `Date 日期: ${date}`, `Time 时间: ${time}`,
+          `Guests 人数: ${guests}`, `Seating 座位: ${room}`,
+          notes ? `Requests 备注: ${notes}` : null,
+        ].filter(Boolean).join('\n');
+
+        const subject = encodeURIComponent(`Reservation — ${name} · ${guests} · ${date} ${time}`);
+        emailBtn.href = `mailto:${EMAIL}?subject=${subject}&body=${encodeURIComponent(lastText)}`;
+        details.textContent = lastText;
+
+        form.hidden = true;
+        confirmBox.hidden = false;
+        confirmBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        playChime({ semis: 0 });             // a clean confirming chime — the one transactional success moment
+      });
+    }
+    if (copyBtn) copyBtn.addEventListener('click', () => copyText(lastText, copyBtn, 'v.book.copied', 'v.book.copy'));
+  </script>
+</body>
+</html>

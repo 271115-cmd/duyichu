@@ -1,0 +1,25 @@
+{
+  "name": "都一处 Duyichu — The Only Place",
+  "short_name": "都一处",
+  "description": "Beijing's imperial shaomai house, named by the Qianlong Emperor and serving its 24-fold dumplings on Qianmen Street since 1738.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0E0B08",
+  "theme_color": "#1F6BED",
+  "categories": ["food", "travel", "lifestyle"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon.svg", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Menu", "short_name": "Menu", "url": "/menu.html", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Visit Us", "short_name": "Visit", "url": "/contact.html", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Heritage", "short_name": "Heritage", "url": "/heritage.html", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
