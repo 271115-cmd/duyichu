@@ -15,9 +15,23 @@ const VERSION = 'duyichu-v1';
 const OFFLINE = '/offline.html';
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(VERSION).then((cache) => cache.addAll([OFFLINE, '/icon.svg', '/icon-192.png'])).then(() => self.skipWaiting())
-  );
+  event.waitUntil((async () => {
+    const cache = await caches.open(VERSION);
+    // Re-wrap each response so a REDIRECTED fetch can still be cached. On the
+    // deployed host, /offline.html 307-redirects to /offline, and cache.put()/
+    // addAll() reject redirected responses outright — which would fail the whole
+    // install (no SW, no offline page). Fetching with redirect:'follow' and
+    // storing a fresh Response (not flagged "redirected") works in every env.
+    await Promise.allSettled(
+      [OFFLINE, '/icon.svg', '/icon-192.png'].map(async (u) => {
+        try {
+          const res = await fetch(u, { redirect: 'follow' });
+          if (res.ok) await cache.put(u, new Response(await res.blob(), { headers: res.headers }));
+        } catch (e) { /* one missing asset must not fail the whole install */ }
+      })
+    );
+    await self.skipWaiting();
+  })());
 });
 
 self.addEventListener('activate', (event) => {
