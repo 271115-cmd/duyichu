@@ -27,25 +27,30 @@ const fillTokens = (s) => (s.indexOf('{') === -1 ? s : s.replace(/\{YEARS\}/g, Y
 // the five entry pages; `seg` is the path after the language prefix
 const PAGES = [
   { file: 'index.html', seg: '', desc: 'meta.home' },
-  { file: 'heritage.html', seg: 'heritage.html', desc: 'meta.heritage' },
-  { file: 'menu.html', seg: 'menu.html', desc: 'meta.menu' },
-  { file: 'gifts.html', seg: 'gifts.html', desc: 'meta.gifts' },
-  { file: 'contact.html', seg: 'contact.html', desc: 'meta.contact' },
+  { file: 'heritage.html', seg: 'heritage', desc: 'meta.heritage' },
+  { file: 'menu.html', seg: 'menu', desc: 'meta.menu' },
+  { file: 'gifts.html', seg: 'gifts', desc: 'meta.gifts' },
+  { file: 'contact.html', seg: 'contact', desc: 'meta.contact' },
 ];
 const SEGS = PAGES.map((p) => p.seg);
 
 const urlFor = (seg, lang) => SITE_URL + (lang === 'en' ? '/' + seg : '/' + lang + '/' + seg);
 const htmlLangAttr = (lang) => (lang === 'zh' ? 'zh-CN' : lang);
 
-// rewrite an internal page link to stay inside the chosen language
+// Rewrite a source internal link ("/menu.html", "/menu.html#x", "/") to the
+// EXTENSIONLESS, in-language form Cloudflare static-assets serves at 200
+// ("/zh/menu", "/zh/") so navigation never 307-redirects. Anchors (#x),
+// tel:/mailto:/http(s) and unknown paths are left untouched.
+const PAGE_FILES = PAGES.filter((p) => p.file !== 'index.html').map((p) => p.file);
 function rewriteHref(href, lang) {
-  if (lang === 'en') return href;
-  if (href === '/') return '/' + lang + '/';
-  for (const seg of SEGS) {
-    if (!seg) continue;
-    if (href === '/' + seg || href.startsWith('/' + seg + '#') || href.startsWith('/' + seg + '?')) {
-      return '/' + lang + href; // '/menu.html#x' → '/zh/menu.html#x'
-    }
+  if (typeof href !== 'string' || !href.startsWith('/')) return href;
+  const pre = lang === 'en' ? '' : '/' + lang;
+  if (href === '/' || href === '/index.html') return pre + '/';
+  for (const f of PAGE_FILES) {
+    const base = '/' + f;                        // "/menu.html"
+    const ext = '/' + f.replace(/\.html$/, '');  // "/menu"
+    if (href === base) return pre + ext;
+    if (href.startsWith(base + '#') || href.startsWith(base + '?')) return pre + ext + href.slice(base.length);
   }
   return href;
 }
@@ -97,9 +102,10 @@ for (const page of PAGES) {
         const ld = fillTokens(T[page.desc][lang]);
         root.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach((mt) => mt.setAttribute('content', ld));
       }
-      // keep internal links in-language
-      root.querySelectorAll('a[href]').forEach((a) => { a.setAttribute('href', rewriteHref(a.getAttribute('href'), lang)); });
     }
+    // Rewrite ALL internal page links to the extensionless, in-language form —
+    // runs for en too, so en pages link to /menu (not /menu.html) → no 307 hop.
+    root.querySelectorAll('a[href]').forEach((a) => { a.setAttribute('href', rewriteHref(a.getAttribute('href'), lang)); });
 
     // hreflang alternates + x-default + self canonical
     const links = [`<link rel="canonical" href="${urlFor(page.seg, lang)}">`];

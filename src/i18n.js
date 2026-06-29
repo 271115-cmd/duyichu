@@ -561,7 +561,7 @@ function injectToggles() {
   const ns = document.querySelector('[data-barba-namespace]')?.dataset.barbaNamespace;
   if (ns !== 'contact' && !document.getElementById('reserve-cta')) {
     const a = document.createElement('a');
-    a.id = 'reserve-cta'; a.href = langPrefix() + '/contact.html'; a.className = 'reserve-cta show';
+    a.id = 'reserve-cta'; a.href = langPrefix() + (isPrerendered() ? '/contact' : '/contact.html'); a.className = 'reserve-cta show';
     a.innerHTML = `<span class="rcta-dot"></span><span data-i18n="nav.reserve">Reserve</span>`;
     document.body.appendChild(a);
   }
