@@ -7,12 +7,17 @@
   Cache-Control: public, max-age=31536000, immutable
 
 # Baseline security headers on every response.
-# NOTE: intentionally NO Content-Security-Policy — the site relies on inline
-# scripts (JSON-LD, handlers), the external Amap SDK, and WebGL blob:/data: URIs;
-# a strict CSP would break those and needs live testing first.
+# CSP is shipped as Report-Only first: it does NOT block anything, it only logs
+# violations to the browser console so we can confirm the Amap map + 3D + fonts
+# load cleanly before flipping it to an enforcing `Content-Security-Policy`.
+# Tuned to the site: only inline <script> is non-executable JSON-LD and there are
+# zero inline on*= handlers (so no script 'unsafe-inline' needed); inline style=
+# attrs need style 'unsafe-inline'; Draco needs 'wasm-unsafe-eval' + blob worker;
+# Amap loads webapi.amap.com + runtime tiles on *.amap.com / *.autonavi.com.
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://webapi.amap.com https://*.amap.com https://*.autonavi.com blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.amap.com https://*.autonavi.com; font-src 'self'; connect-src 'self' https://*.amap.com https://*.autonavi.com; worker-src 'self' blob:; frame-src 'self' https://*.amap.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
