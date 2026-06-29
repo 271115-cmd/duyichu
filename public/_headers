@@ -1,0 +1,18 @@
+# Cloudflare Workers static-assets header rules (copied verbatim to dist/_headers
+# by Vite). Format: a path pattern line, then indented "Name: value" pairs.
+
+# Content-hashed build output (Vite puts a hash in every filename, so the bytes
+# behind a given URL never change) — safe to cache forever.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Baseline security headers on every response.
+# NOTE: intentionally NO Content-Security-Policy — the site relies on inline
+# scripts (JSON-LD, handlers), the external Amap SDK, and WebGL blob:/data: URIs;
+# a strict CSP would break those and needs live testing first.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
